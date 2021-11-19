@@ -14,11 +14,18 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest
 public class AbstractTest {
 
-    @Container
-    public static PostgreSQLContainer container = new PostgreSQLContainer()
+    private static PostgreSQLContainer container = new PostgreSQLContainer<>("postgres:latest")
+            .withReuse(true)
             .withUsername("root")
             .withPassword("root")
             .withDatabaseName("test");
+
+// TODO: same as above
+//    @Container
+//    public static PostgreSQLContainer container = new PostgreSQLContainer()
+//            .withUsername("root")
+//            .withPassword("root")
+//            .withDatabaseName("test");
 
     @BeforeAll
     public static void setup() {
